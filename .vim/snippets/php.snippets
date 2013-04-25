@@ -1,0 +1,94 @@
+snippet pubf
+	/**
+	 *
+	 *
+	 * @return ${1:type}
+	 */
+	public function ${2:method}(${3:args})
+	{
+		${4:code}
+	}
+
+snippet controller
+	/**
+	 * ${1:description}
+	 *
+	 * @package ${2:package}
+	 * @subpackage ${3:subpackage}
+	 * @group ${3:subpackage}
+	 * @group ${4:name}
+	 */
+	class Controller_${4:name} extends Controller
+	{
+		${5:code}
+	}
+
+snippet dcontroller
+	<?php
+	/**
+	 * ${1:`g:p_description`}
+	 *
+	 * @package ${2:`g:p_package`}
+	 * @version ${3:`g:p_version`}
+	 */
+	
+	/**
+	 * ${4:description}
+	 */
+	class Controller_${7:name} extends ${8:Controller}
+	{
+		${9:code}
+	}
+
+snippet tdcontroller
+	<?php
+	/**
+	 * ${1:`g:p_description`}
+	 *
+	 * @package ${2:`g:p_package`}
+	 * @version ${3:`g:p_version`}
+	 */
+	
+	/**
+	 * ${4:description}
+	 */
+	class Test_Controller_${7:name} extends ${8:TestCase}
+	{
+		${9:code}
+	}
+
+snippet view
+	<?php
+	/**
+	 * ${1:`g:p_description`}
+	 *
+	 * @package ${2:`g:p_package`}
+	 * @version ${3:`g:p_version`}
+	 */
+	?>
+
+snippet doc
+	<?php
+	/**
+	 * ${1:`g:p_description`}
+	 *
+	 * @package ${2:`g:p_package`}
+	 * @version ${3:`g:p_version`}
+	 */
+
+snippet bstext
+	<div class="control-group">
+		<label class="control-label" for="inputPassword">${1:Control}</label>
+		<div class="controls">
+			<input type="text" ${2:attr}>
+		</div>
+	</div>
+
+snippet bsch
+	<div class="control-group">
+		<div class="controls">
+			<label class="checkbox">
+				<input type="checkbox" ${2:attr}> ${1:Checkbox}
+			</label>
+		</div>
+	</div>
