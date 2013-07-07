@@ -1,4 +1,5 @@
 syntax on
+filetype plugin on
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set number
@@ -26,17 +27,4 @@ cnoremap <M-f> <S-Right>
 if filereadable(".vimrc") && get(g:, 'optional_source', 1)
 	:let g:optional_source=0
 	source .vimrc
-endif
-
-"------ Syntax Check ------
-" PHP Lint
-if exists('*g:PHPLint')
-	autocmd BufWritePost *.php :call PHPLint()
-	function PHPLint()
-		let result = system( &ft . ' -l ' . bufname(""))
-		let headPart = strpart(result, 0, 16)
-		if headPart != "No syntax errors"
-			echo result
-		endif
-	endfunction
 endif

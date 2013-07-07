@@ -1,4 +1,4 @@
-export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/local/sbin:$HOME/sh
 [[ -s "$HOME/.zshrc-external" ]] && source "$HOME/.zshrc-external"
 export HISTFILE="$HOME/.zsh_history"
 export HISTIGNORE="ls:ls -[la]*:"
