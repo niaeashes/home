@@ -6,7 +6,6 @@ set number
 set autoindent
 set modeline
 set modelines=5
-set colorcolumn=80
 
 nmap <Space>n :next<CR>
 nmap <Space>b :prev<CR>
@@ -28,3 +27,5 @@ if filereadable(".vimrc") && get(g:, 'optional_source', 1)
 	:let g:optional_source=0
 	source .vimrc
 endif
+
+autocmd BufNewFile,BufRead *.json set ft=json
