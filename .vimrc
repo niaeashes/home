@@ -6,6 +6,7 @@ set number
 set autoindent
 set modeline
 set modelines=5
+set hidden
 
 nmap <Space>n :next<CR>
 nmap <Space>b :prev<CR>
@@ -13,6 +14,7 @@ nmap <Space>l :list<CR>
 nmap <Space>] <C-w><Right><CR>
 nmap <Space>[ <C-w><Left><CR>
 nmap <Space>; :vsplit<CR>
+nmap <Space>f :files<CR>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
