@@ -1,10 +1,11 @@
 #!/bin/sh
 
-while getopts u:t: name
+while getopts u:d:h: name
 do
 	case $name in
 	u) user=$OPTARG;;
-	t) table=$OPTARG;;
+	d) dbname=$OPTARG;;
+	h) host=$OPTARG;;
 	esac
 done
 
@@ -12,9 +13,13 @@ if [ -z "$user" ]; then
 	user="root"
 fi
 
-if [ -z "$table" ]; then
-	echo "must -t option."
+if [ -z "$host" ]; then
+	host="localhost"
+fi
+
+if [ -z "$dbname" ]; then
+	echo "must -d option."
 	exit 0;
 fi
 
-mysql -u $user -p -e "drop database if exists ${table}; create database ${table} default character set utf8"
+mysql -u $user -p -h $host -e "drop database if exists ${dbname}; create database ${dbname} default character set utf8"

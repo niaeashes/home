@@ -31,3 +31,4 @@ if filereadable(".vimrc") && get(g:, 'optional_source', 1)
 endif
 
 autocmd BufNewFile,BufRead *.json set ft=json
+autocmd BufNewFile,BufRead *.less set ft=css
