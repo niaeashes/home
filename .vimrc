@@ -25,6 +25,11 @@ cnoremap <C-f> <Right>
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
 if filereadable(".vimrc") && get(g:, 'optional_source', 1)
 	:let g:optional_source=0
 	source .vimrc
