@@ -37,3 +37,4 @@ endif
 
 autocmd BufNewFile,BufRead *.json set ft=json
 autocmd BufNewFile,BufRead *.less set ft=css
+autocmd BufNewFile,BufRead *.jbuilder set ft=ruby
