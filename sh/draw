@@ -1,0 +1,13 @@
+#! /usr/bin/env ruby
+
+marks = { 1 => :S, 2 => :H, 3 => :D, 4 => :C }
+rand = Random.new
+
+j = rand.rand(54)
+if j <= 1
+  puts "JK"
+else
+  mark = rand.rand(4)+1
+  number = rand.rand(13)+1
+  puts "#{marks[mark]}#{number}"
+end
