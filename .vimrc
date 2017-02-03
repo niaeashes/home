@@ -8,6 +8,18 @@ set modeline
 set modelines=5
 set hidden
 
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'posva/vim-vue'
+
+call vundle#end()
+
+filetype plugin indent on
+
 nmap <Space>n :next<CR>
 nmap <Space>b :prev<CR>
 nmap <Space>l :list<CR>
