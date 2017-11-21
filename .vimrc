@@ -50,3 +50,4 @@ endif
 autocmd BufNewFile,BufRead *.json set ft=json
 autocmd BufNewFile,BufRead *.less set ft=css
 autocmd BufNewFile,BufRead *.jbuilder set ft=ruby
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
