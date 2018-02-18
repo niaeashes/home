@@ -37,5 +37,3 @@ alias rakes="bundle exec rake -T"
 alias c='pygmentize -O style=monokai -f console256 -g'
 alias uuid="python -c 'import sys,uuid; sys.stdout.write(uuid.uuid4().hex)' | pbcopy && pbpaste && echo"
 setopt nobeep
-
-eval "$(direnv hook zsh)"
