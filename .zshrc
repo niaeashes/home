@@ -33,6 +33,8 @@ zstyle ':completion:*:default' menu select=1
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '  %b'
 zstyle ':vcs_info:*' actionformats '  %b (%a)'
+
+# Needs Nerd Fonts for icons
 precmd () {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
@@ -41,20 +43,25 @@ precmd () {
 PROMPT="%f╭─ %# %{$fg[yellow]%} %T%f %n@%m %{$fg[cyan]%} %c%f%1(v|%{$fg[green]%}%1v%f|)"
 
 if [[ $REVEAL ]]; then
+  # add 'REVEAL MODE' badge
+  PROMPT="$PROMPT %{$fg[red]%}%{$bg[red]%}%{$fg[black]%} REVEAL MODE%{$fg[red]}%k%f"
+fi
+local ARROWS=$(printf '%*s' $SHLVL '' | tr ' ' '❯')
+PROMPT="${PROMPT}
+%f╰─ ${ARROWS} "
+
+if [[ $REVEAL ]]; then
   alias reveal='echo "Already in reveal mode, exit (Ctrl+D) to leave"'
   readonly REVEAL
-  # Prompt Addition -- add 'REVEAL MODE' indicator
-  PROMPT="$PROMPT %{$fg[red]%}%{$bg[red]%}%{$fg[black]%} REVEAL MODE%{$fg[red]}%k%f"
   # Security: disable history logging in reveal mode
   unset HISTFILE
   export HISTSIZE=0
   export SAVEHIST=0
 else
   alias reveal='REVEAL=1 op run --no-masking -- zsh'
-  alias rrr='reveal'
 fi
-local ARROWS=$(printf '%*s' $SHLVL '' | tr ' ' '❯')
-PROMPT="$PROMPT
-%f╰─ $ARROWS "
+
+alias rrr='reveal'
+alias eee='exit'
 
 setopt nobeep
