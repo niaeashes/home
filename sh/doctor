@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+title() { printf "\033[1m== %s ==\033[0m\n" "$*"; }
+
+# mask secret values
+mask() {
+  local v="$1"
+  [[ ${#v} -le 8 ]] && { echo "***"; return; }
+  echo "${v:0:4}***${v: -2}"
+}
+
+title "Potential secrets (redacted)"
+local re='(KEY|TOKEN|SECRET|PASSWORD|PASS|AWS_|GH_|OPENAI_|GCP_|GOOGLE_|GEMINI_|SLACK_|SENTRY_|DSN|API)'
+while IFS='=' read -r k v; do
+  [[ "$k" =~ $re ]] || continue
+  printf "  %-30s = %s\n" "$k" "$(mask "$v")"
+done < <(env)
