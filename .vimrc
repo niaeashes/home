@@ -7,6 +7,7 @@ set autoindent
 set modeline
 set modelines=5
 set hidden
+set re=0 " Use no regex, for typescript.
 
 filetype off
 
@@ -15,6 +16,8 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'posva/vim-vue'
+Plugin 'github/copilot.vim'
+Plugin 'prabirshrestha/vim-lsp'
 
 call vundle#end()
 
@@ -53,3 +56,19 @@ autocmd BufNewFile,BufRead *.jbuilder set ft=ruby
 autocmd BufNewFile,BufRead *.swift set ft=swift
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType swift setlocal ts=4 sts=4 sw=4 expandtab
+
+if executable("tsc") && executable("typescript-language-server")
+  " If TypeScript compiler and language server are available, set up LSP
+  augroup lsp_typescript
+    autocmd!
+    " When open TypeScript files, start the TypeScript language server
+    " autocmd FileType typescript,typescriptreact setlocal omnifunc=lsp#complete
+    autocmd FileType typescript,typescriptreact call lsp#register_server({
+          \ 'name': 'typescript-language-server',
+          \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+          \ 'root_uri': {server_info->lsp#utils#get_default_root_uri()},
+          \ 'initialization_options': {'disableAutomaticTypingAcquisition': v:true},
+          \ 'whitelist': ['typescript', 'typescriptreact'],
+          \ })
+  augroup END
+endif

@@ -20,20 +20,23 @@ setopt extended_history
 zstyle ':completion:*:default' menu select=1
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+zstyle ':vcs_info:*' formats '  %b'
+zstyle ':vcs_info:*' actionformats '  %b (%a)'
 precmd () {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
-RPROMPT="%1(v|%F{green}%1v%f|)"
-PROMPT="%{$fg[yellow]%}%T%{$reset_color%} [%n@%m %{$fg[red]%}%c%{$reset_color%}]%# "
+PROMPT="%f╭─ %# %{$fg[yellow]%} %T%f %n@%m %{$fg[cyan]%} %c%f%1(v|$fg[green]%1v%f|)"
+
+if [ $REVEAL ]; then
+  alias reveal='echo "Already in reveal mode, exit (Ctrl+D) to leave"'
+  PROMPT="$PROMPT %{$fg[red]%}%{$bg[red]$fg[black]%} REVEAL MODE%{$fg[red]}%k%f"
+else
+  alias reveal='REVEAL=1 op run -- zsh'
+fi
+PROMPT="$PROMPT
+%f╰─ ❯ "
 
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-alias la='ls -al'
-alias be="bundle exec"
-alias rakes="bundle exec rake -T"
-alias c='pygmentize -O style=monokai -f console256 -g'
-alias uuid="python -c 'import sys,uuid; sys.stdout.write(uuid.uuid4().hex)' | pbcopy && pbpaste && echo"
 setopt nobeep
