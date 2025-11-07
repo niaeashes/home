@@ -4,5 +4,6 @@
 /.vim/.netrwhist
 /.vim/bundle
 !/.vimrc
+!/.config/wezterm
 !/sh
 !.zshrc
